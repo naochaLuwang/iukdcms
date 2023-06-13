@@ -1,0 +1,223 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             String          @id @default(auto()) @map("_id") @db.ObjectId
+  email          String          @unique
+  name           String?
+  emailVerified  DateTime?
+  hashedPassword String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+  accounts       Account[]
+  Orgsetting     Orgsetting[]
+  Links          Links[]
+  Sublinks       Sublinks[]
+  Carousalimage  Carousalimage[]
+  Albulm         Albulm[]
+}
+
+model Account {
+  id                String  @id @default(auto()) @map("_id") @db.ObjectId
+  userId            String  @db.ObjectId
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? @db.String
+  access_token      String? @db.String
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? @db.String
+  session_state     String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Links {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  title    String     @unique
+  slug     String
+  order    Int
+  sublinks Sublinks[]
+  status   String
+  pageType String
+  userId   String     @db.ObjectId
+  content  String
+  isMulti  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Sublinks {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  linkId   String  @db.ObjectId
+  userId   String  @db.ObjectId
+  title    String  @unique
+  subtitle String?
+  slug     String
+  order    Int
+  status   String
+  content  String
+  pageType String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  link      Links    @relation(fields: [linkId], references: [id], onDelete: Cascade)
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Orgsetting {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId      String   @db.ObjectId
+  name        String
+  phone       String
+  email       String
+  add1        String
+  add2        String
+  mtitle      String
+  description String
+  facebook    String
+  linkedin    String
+  instagram   String
+  logoUrl     String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Carousalimage {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId    String   @db.ObjectId
+  title     String
+  imgUrl    String
+  status    String
+  order     Int
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Albulm {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  userId         String   @db.ObjectId
+  title          String
+  thumbnailImage String
+  status         String
+  order          Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  user           User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  images         Images[]
+}
+
+model Images {
+  id       String  @id @default(auto()) @map("_id") @db.ObjectId
+  albulmId String? @db.ObjectId
+  imageUrl String
+
+  Albulm Albulm? @relation(fields: [albulmId], references: [id])
+}
+
+model Department {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  departmentName String
+  departmentCode String
+  order          Int
+  status         String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+  createdBy      String
+  updatedBy      String
+  peoples        People[]
+}
+
+model People {
+  id            String      @id @default(auto()) @map("_id") @db.ObjectId
+  salutation    String
+  firstName     String
+  slug          String
+  lastName      String
+  email         String?
+  phone         String?
+  departmentId  String?     @db.ObjectId
+  designation   String
+  qualification String?
+  opdTiming     String?
+  opdDays       String?
+  address       String?
+  showEmail     String
+  showPhone     String
+  status        String
+  profileUrl    String?
+  bio           String?
+  order         Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
+  department    Department? @relation(fields: [departmentId], references: [id])
+
+  createdBy String
+  updatedBy String
+}
+
+model Testimonial {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  sub       String
+  status    String
+  order     Int
+  testimony String
+  imageUrl  String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model TermsConditions {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String
+  status    String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Alerts {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String?
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Counters {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  value     Int
+  order     Int
+  status    String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Privacypolicies {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  slug      String
+  status    String
+  content   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

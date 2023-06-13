@@ -1,0 +1,70 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@layer components{
+.link{
+  @apply p-2.5 flex rounded-md gap-6 items-center md:cursor-pointer cursor-default duration-200 font-medium;
+}
+
+.active{
+  @apply bg-blue-100 bg-text-600;
+}
+}
+
+/* quill-custom.css */
+
+/* Custom Fonts */
+
+
+/* Font Family */
+.ql-font-Roboto {
+  font-family: 'Roboto', sans-serif;
+}
+
+/* Font Size */
+.ql-size-14px {
+  font-size: 14px !important;
+}
+
+/* Line Height */
+.ql-line-height-1-5 {
+  line-height: 1.5 !important;
+}
+
+/* Custom bullet point icon */
+.bullet-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  /* Adjust the spacing as needed */
+  width: 16px;
+  /* Adjust the size as needed */
+  height: 16px;
+  /* Adjust the size as needed */
+}
+
+/* Hide default bullet point */
+.ql-custom-bullet .ql-editor li {
+  list-style-type: none;
+}
+
+/* Custom bullet point indentation */
+.ql-custom-bullet .ql-editor li:before {
+  content: none;
+  /* Hide the default bullet point */
+}
+
+/* Apply padding/margin to the custom bullet point icon */
+.ql-custom-bullet .ql-editor li .bullet-icon {
+  margin-right: 8px;
+  /* Adjust the spacing as needed */
+}
+
+/* Optional: Adjust the vertical alignment of the custom bullet point */
+.ql-custom-bullet .ql-editor li .bullet-icon svg {
+  vertical-align: middle;
+}
+

@@ -1,0 +1,25 @@
+import prisma from "@/app/libs/prismadb";
+import { NextResponse } from "next/server";
+
+export async function POST(request: Request) {
+  const body = await request.json();
+
+  const { title, value, order, status } = body;
+
+  const counters = await prisma.counters.create({
+    data: {
+      title,
+      value,
+      order,
+      status,
+    },
+  });
+
+  return NextResponse.json(counters);
+}
+
+export async function GET(request: Request) {
+  const counters = await prisma.counters.findMany({});
+
+  return NextResponse.json(counters);
+}

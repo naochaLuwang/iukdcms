@@ -169,6 +169,8 @@ model People {
 
   createdBy String
   updatedBy String
+
+  Outreachopds Outreachopds[]
 }
 
 model Testimonial {
@@ -220,4 +222,24 @@ model Privacypolicies {
   content   String
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+}
+
+model Outreachopds {
+  id       String     @id @default(auto()) @map("_id") @db.ObjectId
+  date     String
+  doctorId String     @db.ObjectId
+  opdLists Opdlists[]
+  doctor   People?    @relation(fields: [peopleId], references: [id])
+  peopleId String?    @db.ObjectId
+}
+
+model Opdlists {
+  id         String @id @default(auto()) @map("_id") @db.ObjectId
+  clinicName String
+  location   String
+
+  timing String?
+
+  Outreachopds   Outreachopds? @relation(fields: [outreachopdsId], references: [id])
+  outreachopdsId String?       @db.ObjectId
 }

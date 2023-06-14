@@ -3,8 +3,9 @@ interface SelectProps {
 
   departmentName?: string;
   designations?: DesignationProps[];
+  doctors?: PeopleProps[];
   register: UseFormRegister<FieldValues>;
-  errors: FieldErrors;
+  errors?: FieldErrors;
   required?: boolean;
   departments?: any;
   label?: string;

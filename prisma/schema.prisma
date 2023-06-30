@@ -243,3 +243,12 @@ model Opdlists {
   Outreachopds   Outreachopds? @relation(fields: [outreachopdsId], references: [id])
   outreachopdsId String?       @db.ObjectId
 }
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  phone     String
+  message   String
+  isRead    String
+  createdAt DateTime @default(now())
+}

@@ -1,17 +1,31 @@
-// import { useSession } from "next-auth/react";
-import FileUploader from "../components/FileUploader";
 import Heading from "../components/Heading";
-// import { getAllSubLinks } from "../actions/getAllSubLinks";
+import { getAllMessages } from "../actions/getAllMessages";
+import MessageTable from "../components/Table/MessageTable";
 
 const Dashboard = async () => {
-  // const { data: session } = useSession();
-  // console.log(session?.user);
-
-  // const subLinks = await getAllSubLinks();
+  const messages = await getAllMessages();
+  console.log(messages);
 
   return (
     <div className="flex flex-col w-full max-h-screen px-10 py-10">
       <Heading title="Welcome to IUKD CMS" />
+
+      <div className="w-full mx-auto max-w-7xl">
+        <h1>Messages</h1>
+        <MessageTable
+          data={messages}
+          headings={[
+            "Serial No",
+            "Name",
+            "Phone",
+            "Message",
+            "Status",
+
+            "Created At",
+            "Actions",
+          ]}
+        />
+      </div>
     </div>
   );
 };

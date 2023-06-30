@@ -1,8 +1,6 @@
 import prisma from "@/app/libs/prismadb";
 import { NextResponse } from "next/server";
 import getCurrentUser from "@/app/actions/getCurrentUser";
-import { data } from "autoprefixer";
-import { Opdlists } from "@prisma/client";
 
 export async function POST(request: Request) {
   const currentUser = await getCurrentUser();

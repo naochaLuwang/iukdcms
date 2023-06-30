@@ -105,6 +105,18 @@ const Sidebar = () => {
     },
 
     {
+      name: "Outreach OPD",
+      icon: MdPeople,
+
+      menus: [
+        {
+          label: "View OutreachOpds",
+          href: "/outreachopd",
+        },
+      ],
+    },
+
+    {
       name: "Testimonial",
       icon: MdPeople,
 

@@ -1,11 +1,9 @@
 "use client";
-import axios from "axios";
 
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 
 import { useSession } from "next-auth/react";
 
-import useRegisterModal from "@/app/hooks/useRegisterModal";
 import { useEffect, useState } from "react";
 import FormContainer from "../Form/FormContainer";
 import Heading from "../Heading";
@@ -61,7 +59,7 @@ const LoginForm: React.FC = () => {
       }
       if (callback?.ok) {
         toast.success("Logged in");
-        router.replace("/");
+        router.replace("/dashboard");
       }
     });
   };

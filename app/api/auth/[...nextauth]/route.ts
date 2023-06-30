@@ -45,15 +45,15 @@ export const authOptions: AuthOptions = {
     maxAge: 3600,
   },
 
-  // callbacks: {
-  //   async jwt({ token, user }) {
-  //     return { ...token, ...user };
-  //   },
-  //   async session({ session, token }) {
-  //     session.user = token as any;
-  //     return session;
-  //   },
-  // },
+  callbacks: {
+    async jwt({ token, user }) {
+      return { ...token, ...user };
+    },
+    async session({ session, token }) {
+      session.user = token as any;
+      return session;
+    },
+  },
   secret: process.env.NEXT_AUTH_SECRET,
 };
 

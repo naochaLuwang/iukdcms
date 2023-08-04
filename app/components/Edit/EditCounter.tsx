@@ -44,6 +44,7 @@ const EditCounter: React.FC<EditCounterProps> = ({ counter }) => {
       })
       .finally(() => {
         setIsLoading(false);
+        router.refresh();
         router.push("/counter");
       });
   };

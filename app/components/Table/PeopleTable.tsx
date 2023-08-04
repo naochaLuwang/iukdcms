@@ -5,13 +5,7 @@ import { format } from "date-fns";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const PeopleTable = ({
-  data,
-  headings,
-}: {
-  data: PeopleProps[];
-  headings: string[];
-}) => {
+const PeopleTable = ({ data, headings }: { data: any; headings: string[] }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   const handleOpen = () => {
@@ -93,7 +87,7 @@ const PeopleTable = ({
 
           {currentPageData.length > 0 ? (
             <tbody className="">
-              {currentPageData.map((row, index) => (
+              {currentPageData.map((row: any, index: any) => (
                 <tr
                   key={row.id}
                   className="transition duration-300 ease-in-out hover:bg-gray-100"

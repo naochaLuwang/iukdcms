@@ -3,11 +3,19 @@ import PageHeader from "../components/PageHeader";
 import PeopleTable from "../components/Table/PeopleTable";
 
 import { getAllPeople } from "@/app/actions/getAllPeople";
+import client from "../libs/prismadb";
 
 export const revalidate = 0;
 
 const PeoplePage = async () => {
-  const people: PeopleProps[] = await getAllPeople();
+  const people = await client.people.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+    include: {
+      department: true,
+    },
+  });
 
   if (people.length === 0) {
     return (

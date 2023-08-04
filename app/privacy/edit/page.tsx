@@ -1,10 +1,12 @@
-import { getPrivacy } from "@/app/actions/getPrivacy";
-import EditAlert from "@/app/components/Edit/EditAlert";
 import EditPrivacy from "@/app/components/Edit/EditPrivacy";
-import EditTerms from "@/app/components/Edit/EditTerms";
+import client from "@/app/libs/prismadb";
 
 const EditTermPage = async ({ searchParams }: any) => {
-  const privacy = await getPrivacy(searchParams.id);
+  const privacy = await client.privacypolicies.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
   return (
     <>
       <EditPrivacy privacy={privacy} />

@@ -1,16 +1,14 @@
 "use client";
 import axios from "axios";
-
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
 import { useState } from "react";
+import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+
+import Select from "@/app/components/Select";
 import Heading from "@/app/components/Heading";
 import SmallInput from "@/app/components/Inputs/SmallInput";
-import toast, { Toaster } from "react-hot-toast";
 import Wrapper from "@/app/components/Wrapper";
-
-import { useRouter } from "next/navigation";
-import Select from "../Select";
 
 interface EditCounterProps {
   counter: any;
@@ -24,8 +22,6 @@ const EditCounter: React.FC<EditCounterProps> = ({ counter }) => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    watch,
   } = useForm<FieldValues>({
     defaultValues: {
       title: counter.title,

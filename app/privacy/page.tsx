@@ -1,12 +1,16 @@
-import { getAllPrivacy } from "../actions/getAllPrivacy";
 import Empty from "../components/Empty";
 import PageHeader from "../components/PageHeader";
 import PrivacyTable from "../components/Table/PrivacyTable";
+import client from "../libs/prismadb";
 
 export const revalidate = 0;
 
 const PrivacyPage = async () => {
-  const terms = await getAllPrivacy();
+  const terms = await client.privacypolicies.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (terms.length === 0) {
     return (

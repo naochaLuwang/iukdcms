@@ -17,9 +17,3 @@ export async function POST(request: Request) {
 
   return NextResponse.json(counters);
 }
-
-export async function GET(request: Request) {
-  const counters = await prisma.counters.findMany({});
-
-  return NextResponse.json(counters);
-}

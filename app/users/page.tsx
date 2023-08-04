@@ -1,22 +1,11 @@
-import { getAllUsers } from "../actions/getAllUsers";
-import Empty from "../components/Empty";
-import PageHeader from "../components/PageHeader";
-import UserTable from "../components/Table/UserTable";
-
-interface UserProps {
-  id: string;
-  email: string;
-  name: string;
-
-  hashedPassword: string;
-  createdAt: string;
-  updatedAt: string;
-}
+import PageHeader from "@/app/components/PageHeader";
+import UserTable from "@/app/components/Table/UserTable";
+import client from "@/app/libs/prismadb";
 
 export const revalidate = 0;
 
 const UserPage = async () => {
-  const users: UserProps[] = await getAllUsers();
+  const users: any = await client.user.findMany();
 
   return (
     <div className="w-full h-auto">

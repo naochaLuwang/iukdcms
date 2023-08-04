@@ -38,13 +38,7 @@ interface SubLinkProps {
   updatedAt: string;
 }
 
-const LinkTable = ({
-  data,
-  headings,
-}: {
-  data: LinkProps[];
-  headings: string[];
-}) => {
+const LinkTable = ({ data, headings }: { data: any; headings: string[] }) => {
   const itemsPerPage = 10; // Number of items to display per page (updated to 10)
   const [currentPage, setCurrentPage] = useState(1); // Current page number
 
@@ -115,7 +109,7 @@ const LinkTable = ({
 
           {currentPageData.length > 0 ? (
             <tbody className="">
-              {currentPageData.map((row, index) => (
+              {currentPageData.map((row: any, index: any) => (
                 <tr
                   key={row.id}
                   className="transition duration-300 ease-in-out hover:bg-gray-100"

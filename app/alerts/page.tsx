@@ -1,12 +1,16 @@
-import { getAllAlerts } from "../actions/getAllAlerts";
-import Empty from "../components/Empty";
-import PageHeader from "../components/PageHeader";
-import AlertTable from "../components/Table/AlertTable";
+import Empty from "@/app/components/Empty";
+import PageHeader from "@/app/components/PageHeader";
+import AlertTable from "@/app/components/Table/AlertTable";
+import client from "@/app/libs/prismadb";
 
 export const revalidate = 0;
 
 const AlertsPage = async () => {
-  const alerts = await getAllAlerts();
+  const alerts = await client.alerts.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (alerts.length === 0) {
     return (
@@ -23,7 +27,7 @@ const AlertsPage = async () => {
       <PageHeader
         title="Notification"
         action="Add a new Notification"
-        link="/alerts/add_new_alerts"
+        link="/alerts/add_new_alert"
       />
       <AlertTable
         data={alerts}

@@ -2,12 +2,16 @@ import Empty from "../components/Empty";
 import PageHeader from "../components/PageHeader";
 import PeopleTable from "../components/Table/PeopleTable";
 
-import { getAllPeople } from "@/app/actions/getAllPeople";
+import client from "../libs/prismadb";
 
 export const revalidate = 0;
 
 const OutreachOpd = async () => {
-  const people: PeopleProps[] = await getAllPeople();
+  const people: any = await client.outreachopds.findMany({
+    include: {
+      opdLists: true,
+    },
+  });
 
   if (people.length === 0) {
     return (

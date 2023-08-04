@@ -1,15 +1,13 @@
 "use client";
 import axios from "axios";
-
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
 import { useState } from "react";
-import Heading from "../../components/Heading";
-import SmallInput from "../../components/Inputs/SmallInput";
-import toast, { Toaster } from "react-hot-toast";
-import Wrapper from "@/app/components/Wrapper";
-import MyEditor from "@/app/components/Editor";
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+
+import Heading from "@/app/components/Heading";
+import SmallInput from "@/app/components/Inputs/SmallInput";
+import Wrapper from "@/app/components/Wrapper";
 import Select from "@/app/components/Select";
 
 const NewAlert = () => {
@@ -31,7 +29,6 @@ const NewAlert = () => {
   });
 
   const alert = watch("alert");
-  const pageType = watch("pageType");
 
   const generateSlug = () => {
     const slug = alert.toLowerCase().replace(/\s+/g, "_");
@@ -52,7 +49,7 @@ const NewAlert = () => {
       })
       .finally(() => {
         setIsLoading(false);
-        router.push("/alert");
+        router.push("/alerts");
       });
   };
 
@@ -71,7 +68,7 @@ const NewAlert = () => {
       <div className="flex items-end gap-4">
         <SmallInput
           id="slug"
-          label="Slug"
+          label="Link"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -82,7 +79,7 @@ const NewAlert = () => {
           className="w-48 h-10 py-2 text-white duration-200 ease-in-out transform bg-blue-500 border rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline active:bg-blue-800 translate-all"
           onClick={generateSlug}
         >
-          Generate slug
+          Generate Link
         </button>
       </div>
 

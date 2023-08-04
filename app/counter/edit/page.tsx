@@ -1,10 +1,12 @@
-import { getCounter } from "@/app/actions/getCounter";
-import { getDepartment } from "@/app/actions/getDepartment";
 import EditCounter from "@/app/components/Edit/EditCounter";
-import EditDepartment from "@/app/components/Edit/EditDepartment";
+import client from "@/app/libs/prismadb";
 
-const EditDepartmentPage = async ({ searchParams }: any) => {
-  const counters = await getCounter(searchParams.id);
+const EditCounterPage = async ({ searchParams }: any) => {
+  const counters = await client.counters.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
 
   return (
     <>
@@ -13,4 +15,4 @@ const EditDepartmentPage = async ({ searchParams }: any) => {
   );
 };
 
-export default EditDepartmentPage;
+export default EditCounterPage;

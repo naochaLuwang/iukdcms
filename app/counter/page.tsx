@@ -1,14 +1,16 @@
-import { getAllCounters } from "../actions/getAllCounters";
-import { getAllDepartments } from "../actions/getAllDepartments";
-import Empty from "../components/Empty";
-import PageHeader from "../components/PageHeader";
-import CounterTable from "../components/Table/CounterTable";
-import DepartmentTable from "../components/Table/DepartmentTable";
+import Empty from "@/app/components/Empty";
+import PageHeader from "@/app/components/PageHeader";
+import CounterTable from "@/app/components/Table/CounterTable";
+import client from "@/app/libs/prismadb";
 
 export const revalidate = 0;
 
 const CounterPage = async () => {
-  const counters = await getAllCounters();
+  const counters = await client.counters.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (counters.length === 0) {
     return (

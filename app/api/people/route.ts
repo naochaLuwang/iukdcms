@@ -72,18 +72,3 @@ export async function GET(request: Request) {
 
   return NextResponse.json(peoples);
 }
-
-export async function DELETE(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
-
-  if (!id) {
-    return NextResponse.json({ message: "ID cannot be empty" });
-  }
-
-  const deleteUser = await prisma.people.delete({
-    where: {
-      id: id,
-    },
-  });
-}

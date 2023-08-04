@@ -1,15 +1,13 @@
 "use client";
 import axios from "axios";
-
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
 import { useState } from "react";
-import Heading from "../../components/Heading";
-import SmallInput from "../../components/Inputs/SmallInput";
-import toast, { Toaster } from "react-hot-toast";
-import Wrapper from "@/app/components/Wrapper";
-
 import { useRouter } from "next/navigation";
+import toast, { Toaster } from "react-hot-toast";
+
+import Heading from "@/app/components/Heading";
+import SmallInput from "@/app/components/Inputs/SmallInput";
+import Wrapper from "@/app/components/Wrapper";
 import Select from "@/app/components/Select";
 
 const NewCounter = () => {
@@ -20,8 +18,6 @@ const NewCounter = () => {
     register,
     handleSubmit,
     formState: { errors },
-    setValue,
-    watch,
   } = useForm<FieldValues>({
     defaultValues: {
       title: "",
@@ -44,7 +40,7 @@ const NewCounter = () => {
       })
       .finally(() => {
         setIsLoading(false);
-        router.push("/link");
+        router.push("/counter");
       });
   };
 

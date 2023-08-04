@@ -1,17 +1,15 @@
 "use client";
 import axios from "axios";
-
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
 import { useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { useRouter } from "next/navigation";
+
 import Heading from "@/app/components/Heading";
 import SmallInput from "@/app/components/Inputs/SmallInput";
-import toast, { Toaster } from "react-hot-toast";
 import Wrapper from "@/app/components/Wrapper";
-
-import { useRouter } from "next/navigation";
-import Select from "../Select";
-import MyEditor from "../Editor";
+import Select from "@/app/components/Select";
+import MyEditor from "@/app/components/Editor";
 
 interface EditPrivacyProps {
   privacy: any;
@@ -43,7 +41,6 @@ const EditPrivacy: React.FC<EditPrivacyProps> = ({ privacy }) => {
   const editorContent = watch("content");
 
   const title = watch("title");
-  const pageType = watch("pageType");
 
   const generateSlug = () => {
     const slug = title.toLowerCase().replace(/\s+/g, "_");
@@ -70,7 +67,7 @@ const EditPrivacy: React.FC<EditPrivacyProps> = ({ privacy }) => {
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Terms & Conditions" subtitle="Edit Terms & Conditions" />
+      <Heading title="Privacy Policy" subtitle="Edit Privacy Policy" />
       <SmallInput
         id="title"
         label="Title"
@@ -83,7 +80,7 @@ const EditPrivacy: React.FC<EditPrivacyProps> = ({ privacy }) => {
       <div className="flex items-end gap-4">
         <SmallInput
           id="slug"
-          label="Slug"
+          label="Link"
           disabled={isLoading}
           register={register}
           errors={errors}
@@ -95,7 +92,7 @@ const EditPrivacy: React.FC<EditPrivacyProps> = ({ privacy }) => {
           className="w-48 h-10 py-2 text-white duration-200 ease-in-out transform bg-blue-500 border rounded-md hover:bg-blue-700 focus:outline-none focus:shadow-outline active:bg-blue-800 translate-all"
           onClick={generateSlug}
         >
-          Generate slug
+          Generate Link
         </button>
       </div>
 

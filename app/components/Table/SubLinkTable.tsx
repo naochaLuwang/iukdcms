@@ -1,49 +1,16 @@
 "use client";
 import React, { useState } from "react";
-import { FiEdit, FiTrash2 } from "react-icons/fi";
+import { FiEdit } from "react-icons/fi";
 import { format } from "date-fns";
-import axios from "axios";
+
 import { useRouter } from "next/navigation";
 import toast, { Toaster } from "react-hot-toast";
-
-interface SubLinkTableProps {
-  id: string;
-  title: string;
-  slug: string;
-  order: number;
-  status: boolean;
-  createdAt: string;
-  updatedAt: string;
-  sublinks: SubLinkProps[];
-  user: {
-    id: string;
-    email: string;
-    name: string;
-    emailVerified: any;
-    hashedPassword: string;
-    createdAt: string;
-    updatedAt: string;
-  };
-  link: {
-    id: string;
-    title: string;
-    slug: string;
-    order: number;
-    status: string;
-    pageType: string;
-    userId: string;
-    content: any;
-    createdAt: string;
-    updatedAt: string;
-  };
-  actions?: React.ReactNode;
-}
 
 const SubLinkTable = ({
   data,
   headings,
 }: {
-  data: SubLinkProps[];
+  data: any;
   headings: string[];
 }) => {
   const itemsPerPage = 10; // Number of items to display per page (updated to 10)
@@ -71,33 +38,6 @@ const SubLinkTable = ({
     router.push(`/sublink/edit?id=${id}`);
   };
 
-  const handleDelete = (id: string) => {
-    // Check if id is empty or undefined
-    if (!id) {
-      console.error("Invalid id value:", id);
-      return;
-    }
-
-    console.log(id);
-
-    axios
-      .delete("/api/submenu", {
-        params: {
-          id,
-        },
-      })
-      .then(() => {
-        toast.success("Successfully deleted");
-      })
-      .catch((error) => {
-        console.log(error);
-      })
-      .finally(() => {
-        // setIsLoading(false);
-        router.refresh();
-      });
-  };
-
   // Render the table content
   return (
     <div className="max-w-6xl mx-auto">
@@ -119,7 +59,7 @@ const SubLinkTable = ({
 
           {currentPageData.length > 0 ? (
             <tbody className="">
-              {currentPageData.map((row, index) => (
+              {currentPageData.map((row: any, index: any) => (
                 <tr
                   key={row.id}
                   className="transition duration-300 ease-in-out hover:bg-gray-100"

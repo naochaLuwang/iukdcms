@@ -1,20 +1,13 @@
-import {Metadata} from "next";
+import { Metadata } from "next";
 
 export const metadata: Metadata = {
-    title:"Dashboard | Rely CMS 2 "
-
-}
-
+  title: "Dashboard | Rely CMS 2 ",
+};
 
 export default async function DashboardLayout({
-                                                  children,
-                                              }: {
-    children: React.ReactNode;
+  children,
+}: {
+  children: React.ReactNode;
 }) {
-    return (
-        <>
-            {children}
-        </>
-    );
-
+  return <>{children}</>;
 }

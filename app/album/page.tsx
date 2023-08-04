@@ -1,11 +1,16 @@
-import { getAllAlbulms } from "../actions/getAllAlbulms";
-import Empty from "../components/Empty";
-import Heading from "../components/Heading";
-import AlbulmCard from "../components/albulm/AlbulmCard";
 import Link from "next/link";
 
+import Empty from "@/app/components/Empty";
+import Heading from "@/app/components/Heading";
+import AlbulmCard from "@/app/components/albulm/AlbulmCard";
+import client from "@/app/libs/prismadb";
+
 const AlbumPage = async () => {
-  const albums: AlbumProps[] = await getAllAlbulms();
+  const albums: any = await client.albulm.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (albums.length === 0) {
     return (
@@ -31,7 +36,7 @@ const AlbumPage = async () => {
 
       <div className="grid grid-cols-4">
         {albums &&
-          albums.map((album) => (
+          albums.map((album: any) => (
             <Link href={`/albulm/edit?id=${album.id}`} key={album.id}>
               <AlbulmCard
                 image={album.thumbnailImage}

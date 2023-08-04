@@ -1,12 +1,16 @@
-import { getAllDepartments } from "../actions/getAllDepartments";
 import Empty from "../components/Empty";
 import PageHeader from "../components/PageHeader";
 import DepartmentTable from "../components/Table/DepartmentTable";
+import client from "../libs/prismadb";
 
 export const revalidate = 0;
 
 const DepartmentPage = async () => {
-  const departments: DepartmentProps[] = await getAllDepartments();
+  const departments: any = await client.department.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (departments.length === 0) {
     return (

@@ -1,8 +1,12 @@
-import { getDepartment } from "@/app/actions/getDepartment";
 import EditDepartment from "@/app/components/Edit/EditDepartment";
+import client from "@/app/libs/prismadb";
 
 const EditDepartmentPage = async ({ searchParams }: any) => {
-  const department = await getDepartment(searchParams.id);
+  const department: any = await client.department.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
 
   return (
     <>

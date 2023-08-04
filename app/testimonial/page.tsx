@@ -2,10 +2,14 @@ import Empty from "../components/Empty";
 
 import PageHeader from "../components/PageHeader";
 import TestimonialTable from "../components/Table/TestimonialTable";
-import { getAllTestimonials } from "../actions/getAllTestimonial";
+import client from "../libs/prismadb";
 
 const TestimonialPage = async () => {
-  const testimonials = await getAllTestimonials();
+  const testimonials: any = await client.testimonial.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (testimonials.length === 0) {
     return (

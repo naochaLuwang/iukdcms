@@ -1,9 +1,14 @@
 import Heading from "../components/Heading";
-import { getAllMessages } from "../actions/getAllMessages";
+
 import MessageTable from "../components/Table/MessageTable";
+import client from "../libs/prismadb";
 
 const Dashboard = async () => {
-  const messages = await getAllMessages();
+  const messages = await client.message.findMany({
+    where: {
+      isRead: "NO",
+    },
+  });
   console.log(messages);
 
   return (

@@ -1,19 +1,18 @@
 "use client";
 
 import axios from "axios";
-import Wrapper from "@/app/components/Wrapper";
-import Heading from "@/app/components/Heading";
 import { useState } from "react";
-import SmallInput from "@/app/components/Inputs/SmallInput";
-
 import toast, { Toaster } from "react-hot-toast";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
-
-import ImageUpload from "../../components/Inputs/ImageUpload";
 import { useRouter } from "next/navigation";
+
+import Wrapper from "@/app/components/Wrapper";
+import Heading from "@/app/components/Heading";
+import SmallInput from "@/app/components/Inputs/SmallInput";
+import ImageUpload from "@/app/components/Inputs/ImageUpload";
 import Select from "@/app/components/Select";
 
-const CreateAlbulmPage = () => {
+const CreateAlbumPage = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const router = useRouter();
@@ -36,19 +35,11 @@ const CreateAlbulmPage = () => {
 
   const thumbnailImage = watch("thumbnailImage");
 
-  // const setCustomValue = (id: string, value: any) => {
-  //   setValue(id, value, {
-  //     shouldDirty: true,
-  //     shouldTouch: true,
-  //     shouldValidate: true,
-  //   });
-  // };
-
   const onSubmit: SubmitHandler<FieldValues> = (datas) => {
     setIsLoading(true);
 
     axios
-      .post("/api/albulm", datas)
+      .post("/api/album", datas)
       .then(() => {
         toast.success("Image Uploaded successfully");
       })
@@ -57,13 +48,13 @@ const CreateAlbulmPage = () => {
       })
       .finally(() => {
         setIsLoading(false);
-        router.push("/albulm");
+        router.push("/album");
       });
   };
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
-      <Heading title="Albulm" />
+      <Heading title="Album" />
 
       <SmallInput
         id="title"
@@ -122,4 +113,4 @@ const CreateAlbulmPage = () => {
   );
 };
 
-export default CreateAlbulmPage;
+export default CreateAlbumPage;

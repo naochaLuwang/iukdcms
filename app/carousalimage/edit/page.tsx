@@ -1,8 +1,12 @@
-import { getCarousal } from "@/app/actions/getCarousal";
 import EditCarousal from "@/app/components/Edit/EditCarousal";
+import client from "@/app/libs/prismadb";
 
 const EditCarousalPage = async ({ searchParams }: any) => {
-  const carousal = await getCarousal(searchParams.id);
+  const carousal: any = await client.carousalimage.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
 
   return (
     <>

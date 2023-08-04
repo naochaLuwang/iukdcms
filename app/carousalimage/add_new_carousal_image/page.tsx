@@ -91,17 +91,17 @@ const NewCarousalPage = () => {
 
     console.log(datas);
 
-    // axios
-    //   .post("/api/carousalimage", datas)
-    //   .then(() => {
-    //     toast.success("Image Uploaded successfully");
-    //   })
-    //   .catch((error) => {
-    //     toast.error("Error ");
-    //   })
-    //   .finally(() => {
-    //     setIsLoading(false);
-    //   });
+    axios
+      .post("/api/carousalimage", datas)
+      .then(() => {
+        toast.success("Image Uploaded successfully");
+      })
+      .catch((error) => {
+        toast.error("Error ");
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   const bodyContent = (

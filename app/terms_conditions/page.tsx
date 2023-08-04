@@ -1,12 +1,16 @@
-import { getAllTerms } from "../actions/getAllTerms";
 import Empty from "../components/Empty";
 import PageHeader from "../components/PageHeader";
 import TermTable from "../components/Table/TermTable";
+import client from "../libs/prismadb";
 
 export const revalidate = 0;
 
 const TermsPage = async () => {
-  const terms = await getAllTerms();
+  const terms: any = await client.termsConditions.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   if (terms.length === 0) {
     return (

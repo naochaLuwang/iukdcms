@@ -1,10 +1,17 @@
-import { getSubLink } from "@/app/actions/getSublink";
-import { getAllLinks } from "@/app/actions/getAllLinks";
 import EditSubLink from "@/app/components/Edit/EditSubmenu";
+import client from "@/app/libs/prismadb";
 
 const EditSubmenuPage = async ({ searchParams }: any) => {
-  const sublink = await getSubLink(searchParams.id);
-  const links = await getAllLinks();
+  const sublink = await client.sublinks.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
+  const links = await client.links.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   return (
     <>

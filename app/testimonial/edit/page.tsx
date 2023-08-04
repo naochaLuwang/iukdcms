@@ -1,9 +1,12 @@
-import { getTestimonial } from "@/app/actions/getTestimonial";
-
 import EditTestimonial from "@/app/components/Edit/EditTestimonial";
+import client from "@/app/libs/prismadb";
 
 const EditTestimonialPage = async ({ searchParams }: any) => {
-  const testimonial = await getTestimonial(searchParams.id);
+  const testimonial: any = await client.testimonial.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
 
   return (
     <>

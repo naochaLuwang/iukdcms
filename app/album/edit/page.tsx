@@ -1,5 +1,5 @@
-import { getAlbulm } from "@/app/actions/getAlbulm";
-import EditAlbulm from "../../components/albulm/EditAlbulm";
+import EditAlbulm from "@/app/components/albulm/EditAlbulm";
+import client from "@/app/libs/prismadb";
 
 interface SearchParams {
   id: string;
@@ -10,7 +10,11 @@ const EditAlbumPage = async ({
 }: {
   searchParams: SearchParams;
 }) => {
-  const album: AlbumProps = await getAlbulm(searchParams.id);
+  const album: any = await client.albulm.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
 
   return (
     <>

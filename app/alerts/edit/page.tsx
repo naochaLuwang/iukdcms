@@ -1,8 +1,13 @@
-import { getAlert } from "@/app/actions/getAlert";
 import EditAlert from "@/app/components/Edit/EditAlert";
+import client from "@/app/libs/prismadb";
 
 const EditAlertPage = async ({ searchParams }: any) => {
-  const alerts = await getAlert(searchParams.id);
+  const alerts: any = await client.alerts.findUnique({
+    where: {
+      id: searchParams.id,
+    },
+  });
+
   return (
     <>
       <EditAlert alert={alerts} />

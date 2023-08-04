@@ -1,12 +1,15 @@
-import { getAllCarousalImages } from "../actions/getAllCarousalImages";
-import ImageTable from "../components/Table/ImageTable";
-
-import PageHeader from "../components/PageHeader";
+import ImageTable from "@/app/components/Table/ImageTable";
+import PageHeader from "@/app/components/PageHeader";
+import client from "@/app/libs/prismadb";
 
 export const revalidate = 0;
 
 const CarousalImages = async () => {
-  const carousalimages = await getAllCarousalImages();
+  const carousalimages: any = await client.carousalimage.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
   return (
     <div className="w-full h-auto">
       <PageHeader

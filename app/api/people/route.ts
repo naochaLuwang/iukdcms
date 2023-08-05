@@ -60,17 +60,15 @@ export async function POST(request: Request) {
   return NextResponse.json(people);
 }
 
-export async function DELETE(request: Request) {
-  const { searchParams } = new URL(request.url);
-  const id = searchParams.get("id");
-
-  if (!id) {
-    return NextResponse.json({ message: "ID cannot be empty" });
-  }
-
-  const deleteUser = await prisma.people.delete({
+export async function GET(request: Request) {
+  const peoples = await prisma.people.findMany({
     where: {
-      id: id,
+      status: "ACTIVE",
+    },
+    include: {
+      department: true,
     },
   });
+
+  return NextResponse.json(peoples);
 }

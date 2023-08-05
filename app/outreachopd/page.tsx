@@ -7,19 +7,26 @@ import client from "../libs/prismadb";
 export const revalidate = 0;
 
 const OutreachOpd = async () => {
-  const people: any = await client.outreachopds.findMany({
+  const outreachopd: any = await client.outreachopds.findMany({
     include: {
       opdLists: true,
+      doctor: {
+        include: {
+          department: true,
+        },
+      },
     },
   });
 
-  if (people.length === 0) {
+  console.log(outreachopd);
+
+  if (outreachopd.length === 0) {
     return (
       <Empty
         imgp="/people.svg"
         label="Oops! it looks like it is empty."
         href="/outreachopd/add_new_outreach_opd"
-        title="Add New Doctor"
+        title="Add New OPD"
       />
     );
   }
@@ -31,18 +38,8 @@ const OutreachOpd = async () => {
         link="/outreachopd/add_new_outreach_opd"
       />
       <PeopleTable
-        data={people}
-        headings={[
-          "Serial No",
-          "Name",
-          "Designation",
-          "Department",
-          "Status",
-
-          "Created By",
-          "Created At",
-          "Actions",
-        ]}
+        data={outreachopd}
+        headings={["Serial No", "Name", "OPD Date", "Actions"]}
       />
     </div>
   );

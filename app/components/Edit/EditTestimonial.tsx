@@ -67,6 +67,7 @@ const EditTestimonial: React.FC<EditTestimonialProps> = ({ testimonial }) => {
       })
       .finally(() => {
         setIsLoading(false);
+        router.refresh();
         router.push("/testimonial");
       });
   };

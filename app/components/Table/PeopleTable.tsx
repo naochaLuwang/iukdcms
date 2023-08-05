@@ -97,28 +97,13 @@ const PeopleTable = ({ data, headings }: { data: any; headings: string[] }) => {
                     {startIndex + index + 1}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
-                    {`${row.salutation} ${row.firstName} ${row.lastName}`}
+                    {`${row.doctor.salutation} ${row.doctor.firstName} ${row.doctor.lastName}`}
                   </td>
                   <td className="px-4 py-2 text-sm text-orange-800">
-                    {row.designation}
-                  </td>
-                  <td className="px-4 py-2 text-sm text-blue-600">
-                    {row.department?.departmentName}
+                    {row.date}
                   </td>
 
-                  <td className="px-4 py-2 text-sm text-gray-700 w-fit">
-                    <div className="flex items-center px-2 py-1 space-x-2 bg-green-100 rounded-3xl w-fit">
-                      <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-                      <h1 className="font-semibold text-green-600 lowercase">
-                        {row.status}
-                      </h1>
-                    </div>
-                  </td>
-                  <td className="px-4 py-2 text-sm text-gray-700">
-                    {row.createdBy}
-                  </td>
-
-                  <td className="px-4 py-2 text-sm text-gray-700">
+                  {/* <td className="px-4 py-2 text-sm text-gray-700">
                     {isNaN(new Date(row.createdAt).getTime()) ? (
                       <span>Invalid Date</span>
                     ) : (
@@ -126,7 +111,7 @@ const PeopleTable = ({ data, headings }: { data: any; headings: string[] }) => {
                         {format(new Date(row.createdAt), "dd/MM/yy HH:mm")}
                       </span>
                     )}
-                  </td>
+                  </td> */}
                   <td className="px-4 py-2 text-sm text-gray-700">
                     <div className="flex ">
                       <button

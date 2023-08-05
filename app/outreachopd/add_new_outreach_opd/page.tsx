@@ -5,6 +5,7 @@ import { useForm, useFieldArray, Control } from "react-hook-form";
 import DoctorSelect from "../../components/Select/DoctorSelect";
 import axios from "axios";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 type OPDFormValues = {
   date: string;
@@ -24,6 +25,8 @@ const OPDForm: React.FC = () => {
     name: "opdlists",
   });
 
+  const router = useRouter();
+
   useEffect(() => {
     fetch(`/api/people`)
       .then((res) => res.json())
@@ -39,12 +42,15 @@ const OPDForm: React.FC = () => {
     axios
       .post("/api/outreachopds", data)
       .then(() => {
-        toast.success("Message sent successfully");
+        toast.success("Outreach OPD added successfully");
       })
       .catch((error) => {
-        toast.error("Error sending message");
+        toast.error("Error creating Outreach Opd");
       })
-      .finally(() => {});
+      .finally(() => {
+        router.refresh();
+        router.push("/outreachopd");
+      });
   };
 
   return (

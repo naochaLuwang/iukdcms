@@ -229,8 +229,7 @@ model Outreachopds {
   date     String
   doctorId String     @db.ObjectId
   opdLists Opdlists[]
-  doctor   People?    @relation(fields: [peopleId], references: [id])
-  peopleId String?    @db.ObjectId
+  doctor   People?    @relation(fields: [doctorId], references: [id])
 }
 
 model Opdlists {

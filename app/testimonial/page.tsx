@@ -44,5 +44,3 @@ const TestimonialPage = async () => {
 };
 
 export default TestimonialPage;
-
-export const revalidate = 0;

@@ -1,21 +1,8 @@
 import { NextResponse } from "next/server";
 import prisma from "@/app/libs/prismadb";
-import getCurrentUser from "@/app/actions/getCurrentUser";
 
 interface IParams {
   id?: string;
-}
-
-export async function GET(request: Request, { params }: { params: IParams }) {
-  const { id } = params;
-
-  const alerts = await prisma.alerts.findUnique({
-    where: {
-      id: id,
-    },
-  });
-
-  return NextResponse.json(alerts);
 }
 
 export async function PUT(request: Request, { params }: { params: IParams }) {

@@ -74,10 +74,10 @@ const Sidebar = () => {
           label: "Carousal Images",
           href: "/carousalimage",
         },
-        {
-          label: "Album",
-          href: "/albulm",
-        },
+        // {
+        //   label: "Album",
+        //   href: "/albulm",
+        // },
       ],
     },
     {

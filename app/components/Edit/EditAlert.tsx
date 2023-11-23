@@ -47,7 +47,7 @@ const EditAlert: React.FC<EditAlertProps> = ({ alert }) => {
       })
       .finally(() => {
         setIsLoading(false);
-        router.push("/alert");
+        router.push("/alerts");
       });
   };
 

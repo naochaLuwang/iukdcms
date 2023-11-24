@@ -70,7 +70,7 @@ const LoginForm: React.FC = () => {
         <Heading title="Welcome back" subtitle="Login to your account" />
         <Input
           id="email"
-          label="Email"
+          label="Username"
           disabled={isLoading}
           register={register}
           errors={errors}

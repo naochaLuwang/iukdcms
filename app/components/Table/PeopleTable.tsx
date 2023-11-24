@@ -35,6 +35,8 @@ const PeopleTable = ({ data, headings }: { data: any; headings: string[] }) => {
   // Slice data array to get items for current page
   const currentPageData = data.slice(startIndex, endIndex);
 
+  console.log("People", currentPageData);
+
   const handleEdit = (id: string) => {
     router.push(`/people/edit?id=${id}`);
   };
@@ -97,10 +99,20 @@ const PeopleTable = ({ data, headings }: { data: any; headings: string[] }) => {
                     {startIndex + index + 1}
                   </td>
                   <td className="px-4 py-2 text-sm text-gray-700">
-                    {`${row.doctor.salutation} ${row.doctor.firstName} ${row.doctor.lastName}`}
+                    {`${row.salutation} ${row.firstName} ${row.lastName}`}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-700">
+                    {row.designation}
+                  </td>
+                  <td className="px-4 py-2 text-sm text-gray-700">
+                    {row.department.departmentName}
                   </td>
                   <td className="px-4 py-2 text-sm text-orange-800">
-                    {row.date}
+                    {row.status}
+                  </td>
+
+                  <td className="px-4 py-2 text-sm text-gray-700">
+                    {row.createdBy}
                   </td>
 
                   {/* <td className="px-4 py-2 text-sm text-gray-700">

@@ -43,7 +43,7 @@ const PeoplePage = async () => {
           "Status",
 
           "Created By",
-          "Created At",
+
           "Actions",
         ]}
       />

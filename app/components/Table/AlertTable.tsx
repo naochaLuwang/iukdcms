@@ -73,7 +73,7 @@ const AlertTable = ({ data, headings }: { data: any; headings: string[] }) => {
                     </div>
                   </td>
 
-                  <td className="px-4 py-2 text-sm text-gray-700">
+                  {/* <td className="px-4 py-2 text-sm text-gray-700">
                     {isNaN(new Date(row.createdAt).getTime()) ? (
                       <span>Invalid Date</span>
                     ) : (
@@ -81,7 +81,7 @@ const AlertTable = ({ data, headings }: { data: any; headings: string[] }) => {
                         {format(new Date(row.createdAt), "dd/MM/yy HH:mm")}
                       </span>
                     )}
-                  </td>
+                  </td> */}
                   <td className="px-4 py-2 text-sm text-gray-700">
                     <div className="flex ">
                       <button

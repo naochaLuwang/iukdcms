@@ -27,7 +27,7 @@ const CounterPage = async () => {
       <PageHeader
         title="Counter"
         action="Add a new Counter"
-        link="/counter/add_counter"
+        link="/counter/add_new_counter"
       />
       <CounterTable
         data={counters}

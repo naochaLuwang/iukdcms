@@ -31,7 +31,7 @@ const AlertsPage = async () => {
       />
       <AlertTable
         data={alerts}
-        headings={["Serial No", "Title", "Status", "Created At", "Actions"]}
+        headings={["Serial No", "Title", "Status",  "Actions"]}
       />
     </div>
   );

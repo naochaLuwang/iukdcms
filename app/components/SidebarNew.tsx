@@ -44,7 +44,7 @@ const Sidebar = () => {
       ],
     },
     {
-      name: "Marquee Notifications",
+      name: "Notifications",
       icon: IoImagesOutline,
 
       menus: [
@@ -80,17 +80,17 @@ const Sidebar = () => {
         // },
       ],
     },
-    {
-      name: "Department",
-      icon: TbReportAnalytics,
+    // {
+    //   name: "Department",
+    //   icon: TbReportAnalytics,
 
-      menus: [
-        {
-          label: "View Department",
-          href: "/department",
-        },
-      ],
-    },
+    //   menus: [
+    //     {
+    //       label: "View Department",
+    //       href: "/department",
+    //     },
+    //   ],
+    // },
 
     {
       name: "Doctors",

@@ -18,12 +18,12 @@ export async function POST(request: Request) {
   return NextResponse.json(alerts);
 }
 
-export async function GET(request: Request) {
-  const alerts = await prisma.alerts.findMany({
-    where: {
-      status: "ACTIVE",
-    },
-  });
+// export async function GET(request: Request) {
+//   const alerts = await prisma.alerts.findMany({
+//     where: {
+//       status: "ACTIVE",
+//     },
+//   });
 
-  return NextResponse.json(alerts);
-}
+//   return NextResponse.json(alerts);
+// }

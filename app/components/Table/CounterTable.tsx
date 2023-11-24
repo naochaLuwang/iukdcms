@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import { FiEdit } from "react-icons/fi";
 import { format } from "date-fns";
-import axios from "axios";
+
 import { useRouter } from "next/navigation";
 
 const CounterTable = ({

@@ -44,3 +44,5 @@ export async function PUT(request: Request, { params }: { params: IParams }) {
 
   return NextResponse.json(editlink);
 }
+
+export const revalidate = 1;

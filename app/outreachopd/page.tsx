@@ -1,6 +1,6 @@
 import Empty from "../components/Empty";
 import PageHeader from "../components/PageHeader";
-import PeopleTable from "../components/Table/PeopleTable";
+import OutreachOpdTable from "../components/Table/OutreachOpdTable";
 
 import client from "../libs/prismadb";
 
@@ -37,9 +37,9 @@ const OutreachOpd = async () => {
         action="Add a new OPD"
         link="/outreachopd/add_new_outreach_opd"
       />
-      <PeopleTable
+      <OutreachOpdTable
         data={outreachopd}
-        headings={["Serial No", "Name", "OPD Date", "Actions"]}
+        headings={["Serial No", "Name", "OPD Date", "Location", "Actions"]}
       />
     </div>
   );

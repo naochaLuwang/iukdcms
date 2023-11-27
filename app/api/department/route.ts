@@ -27,7 +27,11 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  const departments = await prisma.department.findMany();
+  const departments = await prisma.department.findMany({
+    where: {
+      status: "ACTIVE",
+    },
+  });
 
   return NextResponse.json(departments);
 }

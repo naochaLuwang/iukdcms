@@ -60,6 +60,8 @@ export async function POST(request: Request) {
   return NextResponse.json(people);
 }
 
+export const revalidate = 1;
+
 export async function GET(request: Request) {
   const peoples = await prisma.people.findMany({
     where: {

@@ -5,6 +5,8 @@ interface IParams {
   id?: string;
 }
 
+export const revalidate = 1;
+
 export async function GET(request: Request, { params }: { params: IParams }) {
   const { id } = params;
   const person = await prisma.people.findUnique({

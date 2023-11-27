@@ -30,6 +30,8 @@ export async function POST(request: Request) {
   return NextResponse.json(newSublink);
 }
 
+export const revalidate = 1;
+
 export async function GET(request: Request) {
   const menus = await prisma.sublinks.findMany({
     include: {
